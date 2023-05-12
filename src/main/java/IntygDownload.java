@@ -24,6 +24,7 @@ public class IntygDownload {
 
         String targetPath = System.getProperty("user.dir") + "/target";
         Path path = Paths.get(targetPath);
+        System.out.println("test");
 
 
         ChromeOptions options = new ChromeOptions();

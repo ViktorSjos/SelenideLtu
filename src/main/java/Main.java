@@ -23,10 +23,10 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
         public static void main(String[] args) throws IOException, InterruptedException {
 
+
             FinalDate finalDate = new FinalDate();
             IntygDownload intygDownload = new IntygDownload();
             SyllabusDownload syllabusDownload = new SyllabusDownload();
-            System.out.println("eee");
 
         }
     }
