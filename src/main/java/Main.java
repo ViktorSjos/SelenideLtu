@@ -9,11 +9,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-
 import java.io.File;
 import java.io.IOException;
-import java.time.Duration;
-
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
@@ -23,7 +20,7 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
         public static void main(String[] args) throws IOException, InterruptedException {
 
-            LoginMethod();
+            SyllabusMethod();
 
         }
 
@@ -95,7 +92,6 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
             String text = $("ladok-card").getText();
             String[] lines = text.split("\n");
-            System.out.println(lines[1]);
 
             sleep(500);
             File screenshot = Screenshots.takeScreenShotAsFile();
@@ -247,7 +243,42 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 
             }
+
+            public static void SyllabusMethod() {
+
+                System.setProperty("selenide.holdBrowserOpen", "true");
+
+
+                Configuration.browser = "chrome";
+                // open LTU Student website
+                open("https://www.ltu.se/student");
+                        getWebDriver().manage().window().maximize();
+
+                sleep(500);
+
+                if ($(By.id("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll")).isDisplayed()) {
+                    $(By.id("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll")).click();
+                }
+
+                sleep(250);
+
+                $(By.className("fa-search")).click();
+
+                $(By.id("cludo-search-bar-input")).sendKeys("Systemvetenskap");
+
+                $(By.xpath("//button[contains(text(),'Sök')]")).click();
+
+                $(By.xpath("//h2[contains(text(),'Systemvetenskap, kandidat, 180 högskolepoäng')]")).click();
+
+                $(By.xpath("//div[contains(text(),'Utbildningsplan')]")).click();
+
+                $(By.xpath("//div[contains(text(),'Utbildningsplan')]")).click();
+
+            }
         }
+
+
+
 
 
 
