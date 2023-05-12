@@ -26,6 +26,7 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
             FinalDate finalDate = new FinalDate();
             IntygDownload intygDownload = new IntygDownload();
             SyllabusDownload syllabusDownload = new SyllabusDownload();
+            System.out.println("eee");
 
         }
     }
