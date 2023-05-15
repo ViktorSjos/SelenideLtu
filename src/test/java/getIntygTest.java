@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class getIntygTest {
 
         @Test
-        void dateTesting() throws IOException, InterruptedException {
+        void IntygTesting() throws IOException, InterruptedException {
                 IntygDownload test = new IntygDownload();
                 String filePathString = test.getIntyg();
                 Path filePath = Paths.get(filePathString);

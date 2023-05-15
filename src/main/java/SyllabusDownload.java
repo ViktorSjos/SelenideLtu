@@ -25,19 +25,18 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class SyllabusDownload {
 
+
     public static String SyllabusMethod () throws InterruptedException{
 
         String dlloce;
 
         ChromeOptions options = new ChromeOptions();
-        options.setHeadless(true);
 
         String targetPath2 = System.getProperty("user.dir") + "/target";
 
         Configuration.downloadsFolder = targetPath2;
 
         System.setProperty("selenide.holdBrowserOpen", "true");
-        System.setProperty("chromeoptions.args", "--headless");
 
         Configuration.browser = "chrome";
         // open LTU Student website

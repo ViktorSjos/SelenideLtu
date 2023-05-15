@@ -18,9 +18,7 @@ public class FinalDate {
 
     public static String finalDate() throws IOException {
 
-
         ChromeOptions options = new ChromeOptions();
-        options.setHeadless(true);
         Configuration.browserCapabilities = options;
 
         File jsonFile = new File("C:\\Users\\vikto\\Documents\\Facebook.json");
@@ -36,7 +34,6 @@ public class FinalDate {
             password = jsonNode.get("facebookCredentials").get("password").asText();
 
         } catch (IOException e) {
-            System.out.println("failed get Json file");
             e.printStackTrace();
         }
 
@@ -45,12 +42,8 @@ public class FinalDate {
         Configuration.browser = "chrome";
         open("https://www.ltu.se");
         getWebDriver().manage().window().maximize();
-        try {
-            if ($(By.id("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll")).isDisplayed()) {
-                $(By.id("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll")).click();
-            }
-        }catch (Exception e){
-            System.out.println("Failed cookies accept");
+        if ($(By.id("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll")).isDisplayed()) {
+            $(By.id("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll")).click();
         }
 
 
