@@ -36,6 +36,7 @@ public class FinalDate {
             password = jsonNode.get("facebookCredentials").get("password").asText();
 
         } catch (IOException e) {
+            System.out.println("failed get Json file");
             e.printStackTrace();
         }
 
@@ -44,8 +45,12 @@ public class FinalDate {
         Configuration.browser = "chrome";
         open("https://www.ltu.se");
         getWebDriver().manage().window().maximize();
-        if ($(By.id("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll")).isDisplayed()) {
-            $(By.id("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll")).click();
+        try {
+            if ($(By.id("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll")).isDisplayed()) {
+                $(By.id("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll")).click();
+            }
+        }catch (Exception e){
+            System.out.println("Failed cookies accept");
         }
 
 
