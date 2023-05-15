@@ -29,6 +29,7 @@ public class IntygButton {
     public static String GetButton() throws InterruptedException, FileNotFoundException {
 
 
+
         ChromeOptions options = new ChromeOptions();
         options.setHeadless(true);
 

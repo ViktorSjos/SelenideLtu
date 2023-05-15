@@ -28,7 +28,6 @@ public class IntygDownload {
     public static String getIntyg() throws InterruptedException, FileNotFoundException {
 
 
-
         String targetPath = System.getProperty("user.dir") + "/target";
 
 

@@ -18,6 +18,7 @@ public class FinalDate {
 
     public static String finalDate() throws IOException {
 
+
         ChromeOptions options = new ChromeOptions();
         options.setHeadless(true);
         Configuration.browserCapabilities = options;

@@ -25,7 +25,6 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class SyllabusDownload {
 
-
     public static String SyllabusMethod () throws InterruptedException{
 
         String dlloce;
