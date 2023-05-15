@@ -1,21 +1,26 @@
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class getIntygTest {
 
         @Test
-        void dateTesting() throws IOException {
-        IntygDownload test = new IntygDownload();
+        void dateTesting() throws IOException, InterruptedException {
+                IntygDownload test = new IntygDownload();
+                String filePathString = test.getIntyg();
+                Path filePath = Paths.get(filePathString);
 
-        Path path = Path.of("/path/to/your/file.txt");
-        assertTrue(Files.exists(path), "File does not exist at path: " + path);
-
-
-    }
-
+                if (Files.exists(filePath) && !Files.isDirectory(filePath) && filePath.getFileName().toString().equals("intyg.pdf")) {
+                        System.out.println("Success! The file " + filePathString + " exists.");
+                } else {
+                        System.out.println("The file " + filePathString + " does not exist.");
+                }
+        }
 }
+
+

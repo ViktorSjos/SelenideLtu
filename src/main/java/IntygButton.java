@@ -23,24 +23,17 @@ import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
-public class IntygDownload {
 
-    public static String getIntyg() throws InterruptedException, FileNotFoundException {
+public class IntygButton {
 
-
-
-        String targetPath = System.getProperty("user.dir") + "/target";
+    public static String GetButton() throws InterruptedException, FileNotFoundException {
 
 
         ChromeOptions options = new ChromeOptions();
         options.setHeadless(true);
-        options.addArguments("download.default_directory", targetPath);
-
-        Configuration.downloadsFolder = targetPath;
 
 
         System.setProperty("selenide.holdBrowserOpen", "true");
-
 
 
         Configuration.browser = "chrome";
@@ -67,7 +60,7 @@ public class IntygDownload {
         Selenide.$("a[href='https://student.ladok.se']").click();
 
         String originalHandle = getWebDriver().getWindowHandle();
-        for(String handle : getWebDriver().getWindowHandles()) {
+        for (String handle : getWebDriver().getWindowHandles()) {
             if (!handle.equals(originalHandle)) {
                 getWebDriver().switchTo().window(handle);
                 break;
@@ -114,26 +107,18 @@ public class IntygDownload {
 
         $(By.linkText("Intyg")).click();
 
-        // Click on the Student Transcript
-        $(By.linkText("Registreringsintyg")).click();
+        $(By.className("btn-ladok-brand")).click();
 
-        sleep(5000);
+        $("#intygstyp").click();
 
-        Configuration.reportsFolder = "target";
-        String[] subfolders = new File(Configuration.reportsFolder).list();
-        int length = subfolders.length;
-        String subfolderName = subfolders[length - 6];
-        String downloadDirectory = Configuration.reportsFolder + File.separator + subfolderName;
-        String fileName = "intyg.pdf";
-        File downloadedFile = new File(downloadDirectory, fileName);
-        String dlloc = null;
+        $("#intygstyp").selectOptionByValue("1: Object");
 
-        if (downloadedFile.exists() && !downloadedFile.isDirectory()) {
-            dlloc = downloadedFile.getAbsolutePath();
-        }
+        String buttonText = $(".btn.btn-ladok-brand.text-nowrap.me-lg-3").getText();
+        String webtext = $("html").getText();
+        String[] lines2 = webtext.split("\n");
+        return lines2[13];
 
-        return dlloc;
 
     }
-
 }
+
