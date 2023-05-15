@@ -48,43 +48,47 @@ public class IntygDownload {
         open("https://www.ltu.se");
         getWebDriver().manage().window().maximize();
 
-
-        if ($(By.id("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll")).isDisplayed()) {
-            $(By.id("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll")).click();
-        }
-
-
-        // Click on the Student link
-        $(By.xpath("//a[text()='Student']")).click();
-
-        // Click on the "Studera" link
-        Selenide.$("a[href='#'][onclick*='Studera']").click();
-
-        // Click on the "Registerutdrag" link
-        Selenide.$(byAttribute("href", "/student/Studera/Resultat/Registerutdrag-1.160158")).click();
-
-        // Click on the "Registerutdrag" link
-        Selenide.$("a[href='https://student.ladok.se']").click();
-
-        String originalHandle = getWebDriver().getWindowHandle();
-        for(String handle : getWebDriver().getWindowHandles()) {
-            if (!handle.equals(originalHandle)) {
-                getWebDriver().switchTo().window(handle);
-                break;
+        try {
+            if ($(By.id("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll")).isDisplayed()) {
+                $(By.id("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll")).click();
             }
+
+
+            // Click on the Student link
+            $(By.xpath("//a[text()='Student']")).click();
+
+            // Click on the "Studera" link
+            Selenide.$("a[href='#'][onclick*='Studera']").click();
+
+            // Click on the "Registerutdrag" link
+            Selenide.$(byAttribute("href", "/student/Studera/Resultat/Registerutdrag-1.160158")).click();
+
+            // Click on the "Registerutdrag" link
+            Selenide.$("a[href='https://student.ladok.se']").click();
+
+            String originalHandle = getWebDriver().getWindowHandle();
+            for(String handle : getWebDriver().getWindowHandles()) {
+                if (!handle.equals(originalHandle)) {
+                    getWebDriver().switchTo().window(handle);
+                    break;
+                }
+            }
+
+            // Click on the "Inloggning via ditt lärosäte" element
+            Selenide.$(byText("Inloggning via ditt lärosäte")).click();
+
+            // Click on the "searchinput" element
+            Selenide.$(byId("searchinput")).sendKeys("luleå tekniska universitet");
+
+            // locate the element using its CSS selector
+            SelenideElement institutionElement = $(By.cssSelector("div.institution-text"));
+
+            // click on the element
+            institutionElement.click();
+        } catch (Exception e) {
+            System.out.println("Failed to get to login page");
         }
 
-        // Click on the "Inloggning via ditt lärosäte" element
-        Selenide.$(byText("Inloggning via ditt lärosäte")).click();
-
-        // Click on the "searchinput" element
-        Selenide.$(byId("searchinput")).sendKeys("luleå tekniska universitet");
-
-        // locate the element using its CSS selector
-        SelenideElement institutionElement = $(By.cssSelector("div.institution-text"));
-
-        // click on the element
-        institutionElement.click();
 
         // Create a new File object pointing to the location of the facebook.json file
         File jsonFile = new File("C:\\Users\\vikto\\Documents\\Facebook.json");
@@ -103,6 +107,7 @@ public class IntygDownload {
             password = jsonNode.get("facebookCredentials").get("password").asText();
 
         } catch (IOException e) {
+            System.out.println("failed get Json file");
             e.printStackTrace();
         }
 
@@ -118,6 +123,7 @@ public class IntygDownload {
         $(By.linkText("Registreringsintyg")).click();
 
         sleep(5000);
+
 
         Configuration.reportsFolder = "target";
         String[] subfolders = new File(Configuration.reportsFolder).list();

@@ -42,9 +42,15 @@ public class IntygButton {
         getWebDriver().manage().window().maximize();
 
 
-        if ($(By.id("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll")).isDisplayed()) {
-            $(By.id("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll")).click();
+
+        try {
+            if ($(By.id("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll")).isDisplayed()) {
+                $(By.id("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll")).click();
+            }
+        }catch (Exception e){
+            System.out.println("Failed cookies accept");
         }
+
 
 
         // Click on the Student link
@@ -79,8 +85,7 @@ public class IntygButton {
         // click on the element
         institutionElement.click();
 
-        // Create a new File object pointing to the location of the facebook.json file
-        File jsonFile = new File("C:\\Users\\vikto\\Documents\\Facebook.json");
+
 
         // Declare variables to store email and password values
         String email = null;
@@ -88,6 +93,7 @@ public class IntygButton {
 
         // Use the ObjectMapper class to parse the JSON data from the file into a JsonNode object
         try {
+            File jsonFile = new File("C:\\Users\\vikto\\Documents\\Facebook.json");
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode jsonNode = objectMapper.readTree(jsonFile);
 
@@ -96,6 +102,7 @@ public class IntygButton {
             password = jsonNode.get("facebookCredentials").get("password").asText();
 
         } catch (IOException e) {
+            System.out.println("failed get Json file");
             e.printStackTrace();
         }
 
