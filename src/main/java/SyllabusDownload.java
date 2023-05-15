@@ -55,13 +55,9 @@ public class SyllabusDownload {
 
         $(".is-medium.is-info").click();
 
-        sleep(1000);
-
         $(By.xpath("//h2[contains(text(),'Systemvetenskap, kandidat, 180 högskolepoäng')]")).click();
 
         $(By.xpath("//div[contains(text(),'Utbildningsplan')]")).click();
-
-        sleep(1000);
 
         $(By.xpath("//div[contains(text(),'Utbildningsplan')]")).click();
 
