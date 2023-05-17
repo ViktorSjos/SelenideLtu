@@ -24,7 +24,7 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
         public static void main(String[] args) throws IOException, InterruptedException {
 
             //Please start the JUnit tests and let the browser close automatically
-            IntygDownload.getIntyg();
+
 
         }
     }
